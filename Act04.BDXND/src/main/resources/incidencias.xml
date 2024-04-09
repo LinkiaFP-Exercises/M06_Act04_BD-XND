@@ -1,0 +1,50 @@
+<incidencias>
+	<incidencia>
+		<id>1</id>
+		<origen>joguisan</origen>
+		<destino>mariauoc</destino>
+		<tipo>normal</tipo>
+		<detalle>Hay un problema con el chat de la ultima clase</detalle>
+		<fechahora>2019/12/06 13:45:34</fechahora>
+	</incidencia>
+	<incidencia>
+		<id>2</id>
+		<origen>joguisan</origen>
+		<destino>martadk</destino>
+		<tipo>normal</tipo>
+		<detalle>El jueves por la tarde tenemos Veterinario con Mickey</detalle>
+		<fechahora>2019/12/08 17:22:45</fechahora>
+	</incidencia>
+	<incidencia>
+		<id>3</id>
+		<origen>mariauoc</origen>
+		<destino>joguisan</destino>
+		<tipo>normal</tipo>
+		<detalle>Ya estan subidas las notas de la practica de Programacion II</detalle>
+		<fechahora>2019/12/09 22:14:07</fechahora>
+	</incidencia>
+	<incidencia>
+		<id>4</id>
+		<origen>martadk</origen>
+		<destino>joguisan</destino>
+		<tipo>normal</tipo>
+		<detalle>Error al reservar el vuelo para el concierto de James Rhodes</detalle>
+		<fechahora>2019/12/10 23:45:17</fechahora>
+	</incidencia>
+	<incidencia>
+		<id>5</id>
+		<origen>mariauoc</origen>
+		<destino>fcabrales</destino>
+		<tipo>normal</tipo>
+		<detalle>No me han llegado las entradas del proximo concierto</detalle>
+		<fechahora>2019/12/11 12:53:38</fechahora>
+	</incidencia>
+	<incidencia>
+		<id>6</id>
+		<origen>fcabrales</origen>
+		<destino>qtarantin</destino>
+		<tipo>normal</tipo>
+		<detalle>Altercado en la presentación de tu ultima pelicula</detalle>
+		<fechahora>2019/12/11 19:16:23</fechahora>
+	</incidencia>
+</incidencias>

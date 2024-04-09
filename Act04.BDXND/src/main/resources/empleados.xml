@@ -1,0 +1,42 @@
+<empleados>
+	<empleado>
+		<usuario>joguisan</usuario>
+		<password>javamolamil</password>
+		<nombre>Jorge</nombre>
+		<apellidos>Guiberteau</apellidos>
+		<direccion>Calle de la programacion 17</direccion>
+		<telefono>658131313</telefono>
+	</empleado>	
+	<empleado>
+		<usuario>mariauoc</usuario>
+		<password>elmeollodelpollo</password>
+		<nombre>Mar</nombre>
+		<apellidos>Fontana</apellidos>
+		<direccion>Calle de la alegria 123</direccion>
+		<telefono>666999000</telefono>
+	</empleado>
+	<empleado>
+		<usuario>martadk</usuario>
+		<password>mickeybrosipimpi</password>
+		<nombre>Marta</nombre>
+		<apellidos>Diaz Kusztrich</apellidos>
+		<direccion>Calle de Jorge 40</direccion>
+		<telefono>666102938</telefono>
+	</empleado>
+	<empleado>
+		<usuario>qtarantin</usuario>
+		<password>pfiction</password>
+		<nombre>Quentin</nombre>
+		<apellidos>Tarantino</apellidos>
+		<direccion>Avenida Cinema Paradiso 14</direccion>
+		<telefono>600100200</telefono>
+	</empleado>
+	<empleado>
+		<usuario>fcabrales</usuario>
+		<password>fitipaldi</password>
+		<nombre>Fito</nombre>
+		<apellidos>Cabrales</apellidos>
+		<direccion>Calle de la musica lalala</direccion>
+		<telefono>699996969</telefono>
+	</empleado>	
+</empleados>
