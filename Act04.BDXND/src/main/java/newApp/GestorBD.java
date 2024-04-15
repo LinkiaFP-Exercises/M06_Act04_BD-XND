@@ -266,19 +266,7 @@ public class GestorBD {
 
         String expression = "/incidencias/incidencia";
         NodeList incidenciaNodes = (NodeList) xpath.evaluate(expression, doc, XPathConstants.NODESET);
-        List<Incidencia> incidencias = new ArrayList<>();
-
-        for (int i = 0; i < incidenciaNodes.getLength(); i++) {
-            Node node = incidenciaNodes.item(i);
-            Incidencia incidencia = new Incidencia();
-            incidencia.setId(Integer.parseInt(getTextValue((Element)node, "id")));
-            incidencia.setOrigen(getTextValue((Element)node, "origen"));
-            incidencia.setDestino(getTextValue((Element)node, "destino"));
-            incidencia.setTipo(getTextValue((Element)node, "tipo"));
-            incidencia.setDetalle(getTextValue((Element)node, "detalle"));
-            incidencia.setFechahoraByString(getTextValue((Element)node, "fechahora"));
-            incidencias.add(incidencia);
-        }
+        final List<Incidencia> incidencias = getIncidenciasFromNodeList(incidenciaNodes);
 
         col.close();
         return incidencias;
@@ -327,19 +315,7 @@ public class GestorBD {
 
         String expression = String.format("/incidencias/incidencia[origen='%s']", origen);
         NodeList incidenciaNodes = (NodeList) xpath.evaluate(expression, doc, XPathConstants.NODESET);
-        List<Incidencia> incidencias = new ArrayList<>();
-
-        for (int i = 0; i < incidenciaNodes.getLength(); i++) {
-            Node node = incidenciaNodes.item(i);
-            Incidencia incidencia = new Incidencia();
-            incidencia.setId(Integer.parseInt(getTextValue((Element)node, "id")));
-            incidencia.setOrigen(getTextValue((Element)node, "origen"));
-            incidencia.setDestino(getTextValue((Element)node, "destino"));
-            incidencia.setTipo(getTextValue((Element)node, "tipo"));
-            incidencia.setDetalle(getTextValue((Element)node, "detalle"));
-            incidencia.setFechahoraByString(getTextValue((Element)node, "fechahora"));
-            incidencias.add(incidencia);
-        }
+        final List<Incidencia> incidencias = getIncidenciasFromNodeList(incidenciaNodes);
 
         col.close();
         return incidencias;
@@ -353,6 +329,13 @@ public class GestorBD {
 
         String expression = String.format("/incidencias/incidencia[destino='%s']", destino);
         NodeList incidenciaNodes = (NodeList) xpath.evaluate(expression, doc, XPathConstants.NODESET);
+        final List<Incidencia> incidencias = getIncidenciasFromNodeList(incidenciaNodes);
+
+        col.close();
+        return incidencias;
+    }
+
+    private List<Incidencia> getIncidenciasFromNodeList(NodeList incidenciaNodes) {
         List<Incidencia> incidencias = new ArrayList<>();
 
         for (int i = 0; i < incidenciaNodes.getLength(); i++) {
@@ -366,14 +349,8 @@ public class GestorBD {
             incidencia.setFechahoraByString(getTextValue((Element)node, "fechahora"));
             incidencias.add(incidencia);
         }
-
-        col.close();
         return incidencias;
     }
-
-
-
-
 
 
 }
