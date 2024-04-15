@@ -1,6 +1,5 @@
 package newApp;
 
-import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
@@ -23,9 +22,10 @@ import java.util.List;
 /**
  * Gestiona las operaciones de base de datos para la aplicación, incluyendo la creación de colecciones,
  * inserción y recuperación de incidencias y empleados.
+ *
+ * @author <a href="https://about.me/prof.guazina">Fauno Guazina</a>
  */
 @SuppressWarnings("deprecation")
-@Getter
 public class GestorBD {
     private static final Logger logger = LoggerFactory.getLogger(GestorBD.class);
     private final String URI = "xmldb:exist://localhost:8080/exist/xmlrpc";
