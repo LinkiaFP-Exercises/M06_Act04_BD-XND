@@ -3,6 +3,7 @@ package newApp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class NewAppMain {
@@ -25,9 +26,7 @@ public class NewAppMain {
                     case 4: cambiarPassEmpleado(scanner, BD); break;
                     case 5: eliminarEmpleado(scanner, BD); break;
                     case 6: getIncidenciaById(scanner, BD); break;
-                    case 7:
-                        // Llamada al método para listar todas las incidencias
-                        break;
+                    case 7: listAllIncidencias(BD); break;
                     case 8:
                         // Llamada al método para insertar una incidencia
                         break;
@@ -47,6 +46,28 @@ public class NewAppMain {
 
         } catch (Exception e) {
             logger.error("Error durante la ejecución: ", e);
+        }
+    }
+
+    private static void listAllIncidencias(GestorBD BD) {
+        System.out.println("Listar todas las incidencias:");
+        try {
+            List<Incidencia> incidencias = BD.listarTodasLasIncidencias();
+            if (incidencias.isEmpty()) {
+                System.out.println("No hay incidencias registradas.");
+            } else {
+                for (Incidencia incidencia : incidencias) {
+                    System.out.println("ID: " + incidencia.getId() +
+                            ", Origen: " + incidencia.getOrigen() +
+                            ", Destino: " + incidencia.getDestino() +
+                            ", Tipo: " + incidencia.getTipo() +
+                            ", Detalle: " + incidencia.getDetalle() +
+                            ", Fecha y Hora: " + incidencia.getFechahora());
+                }
+            }
+        } catch (Exception e) {
+            logger.error("Error al listar todas las incidencias: ", e);
+            System.out.println(e.getMessage());
         }
     }
 
