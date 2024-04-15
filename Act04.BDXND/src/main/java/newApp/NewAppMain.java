@@ -7,6 +7,22 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Clase principal de la aplicación NewApp que gestiona empleados e incidencias.
+ * Esta clase contiene el método main que ejecuta la aplicación, ofreciendo un menú interactivo
+ * para realizar diversas operaciones como insertar, modificar, eliminar empleados, así como
+ * gestionar incidencias relacionadas con estos. Utiliza una instancia de {@link GestorBD}
+ * para interactuar con la base de datos XML.
+ *
+ * Las operaciones disponibles incluyen:
+ * - Insertar, validar, modificar, cambiar contraseña, y eliminar empleados.
+ * - Insertar incidencias, y listar incidencias por origen, destino, o ID.
+ *
+ * El flujo principal de la aplicación maneja la entrada del usuario a través de un menú
+ * que lee los comandos y ejecuta las acciones correspondientes hasta que se elige salir.
+ *
+ * @author <a href="https://about.me/prof.guazina">Fauno Guazina</a>
+ */
 public class NewAppMain {
     private static final Logger logger = LoggerFactory.getLogger(NewAppMain.class);
 
