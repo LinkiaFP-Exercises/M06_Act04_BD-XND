@@ -345,6 +345,31 @@ public class GestorBD {
         return incidencias;
     }
 
+    public List<Incidencia> obtenerIncidenciasPorDestino(String destino) throws Exception {
+        Collection col = getCollection();
+        XMLResource xmlResource = getXMLResource(col, INCIDENCIAS_XML);
+        Document doc = (Document) xmlResource.getContentAsDOM();
+        XPath xpath = XPathFactory.newInstance().newXPath();
+
+        String expression = String.format("/incidencias/incidencia[destino='%s']", destino);
+        NodeList incidenciaNodes = (NodeList) xpath.evaluate(expression, doc, XPathConstants.NODESET);
+        List<Incidencia> incidencias = new ArrayList<>();
+
+        for (int i = 0; i < incidenciaNodes.getLength(); i++) {
+            Node node = incidenciaNodes.item(i);
+            Incidencia incidencia = new Incidencia();
+            incidencia.setId(Integer.parseInt(getTextValue((Element)node, "id")));
+            incidencia.setOrigen(getTextValue((Element)node, "origen"));
+            incidencia.setDestino(getTextValue((Element)node, "destino"));
+            incidencia.setTipo(getTextValue((Element)node, "tipo"));
+            incidencia.setDetalle(getTextValue((Element)node, "detalle"));
+            incidencia.setFechahoraByString(getTextValue((Element)node, "fechahora"));
+            incidencias.add(incidencia);
+        }
+
+        col.close();
+        return incidencias;
+    }
 
 
 

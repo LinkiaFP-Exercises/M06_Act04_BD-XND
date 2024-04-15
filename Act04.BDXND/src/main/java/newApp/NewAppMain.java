@@ -31,8 +31,31 @@ public class NewAppMain {
                     case 8: insertIncidencia(scanner, BD); break;
                     case 9: listIncideciaByOrgin(scanner, BD); break;
                     case 10:
-                        // Llamada al método para obtener incidencias destinadas a un empleado
+                        scanner.nextLine();
+                        System.out.println("Obtener las incidencias destinadas a un empleado:");
+                        System.out.print("Ingrese el nombre de usuario del empleado destinatario: ");
+                        String usuarioDestino = scanner.nextLine();
+
+                        try {
+                            List<Incidencia> incidencias = BD.obtenerIncidenciasPorDestino(usuarioDestino);
+                            if (incidencias.isEmpty()) {
+                                System.out.println("No hay incidencias destinadas al usuario: " + usuarioDestino);
+                            } else {
+                                for (Incidencia incidencia : incidencias) {
+                                    System.out.println("ID: " + incidencia.getId() +
+                                            ", Origen: " + incidencia.getOrigen() +
+                                            ", Destino: " + incidencia.getDestino() +
+                                            ", Tipo: " + incidencia.getTipo() +
+                                            ", Detalle: " + incidencia.getDetalle() +
+                                            ", Fecha y Hora: " + incidencia.getFechahoraAsString());
+                                }
+                            }
+                        } catch (Exception e) {
+                            logger.error("Error al obtener las incidencias por destino: ", e);
+                            System.out.println(e.getMessage());
+                        }
                         break;
+
                     case 0:
                         System.out.println("Saliendo...");
                         break;
