@@ -1,4 +1,4 @@
-<departamento>
+<empleados>
 	<empleado>
 		<usuario>joguisan</usuario>
 		<password>javamolamil</password>
@@ -39,4 +39,4 @@
 		<direccion>Calle de la musica lalala</direccion>
 		<telefono>699996969</telefono>
 	</empleado>	
-</departamento>
+</empleados>

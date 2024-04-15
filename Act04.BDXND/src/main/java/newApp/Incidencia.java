@@ -20,7 +20,7 @@ public class Incidencia {
     private LocalDateTime fechahora;
 
     // Método para convertir un String de fecha y hora al formato LocalDateTime
-    public void setFechahora(String fechahora) {
+    public void setFechahoraByString(String fechahora) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         this.fechahora = LocalDateTime.parse(fechahora, formatter);
     }
