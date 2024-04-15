@@ -30,4 +30,13 @@ public class Incidencia {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         return this.fechahora.format(formatter);
     }
+
+    public void print() {
+        System.out.println("ID: " + this.getId() +
+                ", Origen: " + this.getOrigen() +
+                ", Destino: " + this.getDestino() +
+                ", Tipo: " + this.getTipo() +
+                ", Detalle: " + this.getDetalle() +
+                ", Fecha y Hora: " + this.getFechahoraAsString());
+    }
 }

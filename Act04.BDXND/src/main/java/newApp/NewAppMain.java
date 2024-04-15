@@ -30,42 +30,33 @@ public class NewAppMain {
                     case 7: listAllIncidencias(BD); break;
                     case 8: insertIncidencia(scanner, BD); break;
                     case 9: listIncideciaByOrgin(scanner, BD); break;
-                    case 10:
-                        scanner.nextLine();
-                        System.out.println("Obtener las incidencias destinadas a un empleado:");
-                        System.out.print("Ingrese el nombre de usuario del empleado destinatario: ");
-                        String usuarioDestino = scanner.nextLine();
-
-                        try {
-                            List<Incidencia> incidencias = BD.obtenerIncidenciasPorDestino(usuarioDestino);
-                            if (incidencias.isEmpty()) {
-                                System.out.println("No hay incidencias destinadas al usuario: " + usuarioDestino);
-                            } else {
-                                for (Incidencia incidencia : incidencias) {
-                                    System.out.println("ID: " + incidencia.getId() +
-                                            ", Origen: " + incidencia.getOrigen() +
-                                            ", Destino: " + incidencia.getDestino() +
-                                            ", Tipo: " + incidencia.getTipo() +
-                                            ", Detalle: " + incidencia.getDetalle() +
-                                            ", Fecha y Hora: " + incidencia.getFechahoraAsString());
-                                }
-                            }
-                        } catch (Exception e) {
-                            logger.error("Error al obtener las incidencias por destino: ", e);
-                            System.out.println(e.getMessage());
-                        }
-                        break;
-
-                    case 0:
-                        System.out.println("Saliendo...");
-                        break;
-                    default:
-                        System.out.println("Opción no válida. Por favor, intente de nuevo.");
+                    case 10: listIncidenciasByDestiny(scanner, BD); break;
+                    case 0: System.out.println("Saliendo..."); break;
+                    default: System.out.println("Opción no válida. Por favor, intente de nuevo.");
                 }
             } while (opcion != 0);
 
         } catch (Exception e) {
             logger.error("Error durante la ejecución: ", e);
+        }
+    }
+
+    private static void listIncidenciasByDestiny(Scanner scanner, GestorBD BD) {
+        scanner.nextLine();
+        System.out.println("Obtener las incidencias destinadas a un empleado:");
+        System.out.print("Ingrese el nombre de usuario del empleado destinatario: ");
+        String usuarioDestino = scanner.nextLine();
+
+        try {
+            List<Incidencia> incidencias = BD.obtenerIncidenciasPorDestino(usuarioDestino);
+            if (incidencias.isEmpty()) {
+                System.out.println("No hay incidencias destinadas al usuario: " + usuarioDestino);
+            } else {
+                incidencias.forEach(Incidencia::print);
+            }
+        } catch (Exception e) {
+            logger.error("Error al obtener las incidencias por destino: ", e);
+            System.out.println(e.getMessage());
         }
     }
 
@@ -80,14 +71,7 @@ public class NewAppMain {
             if (incidencias.isEmpty()) {
                 System.out.println("No hay incidencias registradas por el usuario: " + usuarioOrigen);
             } else {
-                for (Incidencia incidencia : incidencias) {
-                    System.out.println("ID: " + incidencia.getId() +
-                            ", Origen: " + incidencia.getOrigen() +
-                            ", Destino: " + incidencia.getDestino() +
-                            ", Tipo: " + incidencia.getTipo() +
-                            ", Detalle: " + incidencia.getDetalle() +
-                            ", Fecha y Hora: " + incidencia.getFechahoraAsString());
-                }
+                incidencias.forEach(Incidencia::print);
             }
         } catch (Exception e) {
             logger.error("Error al obtener las incidencias por origen: ", e);
@@ -132,14 +116,7 @@ public class NewAppMain {
             if (incidencias.isEmpty()) {
                 System.out.println("No hay incidencias registradas.");
             } else {
-                for (Incidencia incidencia : incidencias) {
-                    System.out.println("ID: " + incidencia.getId() +
-                            ", Origen: " + incidencia.getOrigen() +
-                            ", Destino: " + incidencia.getDestino() +
-                            ", Tipo: " + incidencia.getTipo() +
-                            ", Detalle: " + incidencia.getDetalle() +
-                            ", Fecha y Hora: " + incidencia.getFechahora());
-                }
+                incidencias.forEach(Incidencia::print);
             }
         } catch (Exception e) {
             logger.error("Error al listar todas las incidencias: ", e);
@@ -155,12 +132,7 @@ public class NewAppMain {
         try {
             Incidencia incidencia = BD.obtenerIncidenciaPorId(incidenciaId);
             System.out.println("Detalles de la incidencia:");
-            System.out.println("ID: " + incidencia.getId());
-            System.out.println("Origen: " + incidencia.getOrigen());
-            System.out.println("Destino: " + incidencia.getDestino());
-            System.out.println("Tipo: " + incidencia.getTipo());
-            System.out.println("Detalle: " + incidencia.getDetalle());
-            System.out.println("Fecha y Hora: " + incidencia.getFechahoraAsString());
+            incidencia.print();
         } catch (Exception e) {
             logger.error("Error al obtener la incidencia: ", e);
             System.out.println(e.getMessage());
