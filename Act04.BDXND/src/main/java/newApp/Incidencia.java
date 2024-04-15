@@ -24,4 +24,10 @@ public class Incidencia {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         this.fechahora = LocalDateTime.parse(fechahora, formatter);
     }
+
+    // Método para formatear la fecha y hora
+    public String getFechahoraAsString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        return this.fechahora.format(formatter);
+    }
 }

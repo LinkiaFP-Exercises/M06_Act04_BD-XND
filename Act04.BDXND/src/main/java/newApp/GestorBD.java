@@ -284,6 +284,43 @@ public class GestorBD {
         return incidencias;
     }
 
+    public void insertarIncidencia(Incidencia nuevaIncidencia) throws Exception {
+        Collection col = getCollection();
+        XMLResource xmlResource = getXMLResource(col, INCIDENCIAS_XML);
+        Document doc = (Document) xmlResource.getContentAsDOM();
+        Element root = doc.getDocumentElement();
+
+        // Determinar el ID máximo actual recorriendo los nodos
+        NodeList incidencias = root.getElementsByTagName("incidencia");
+        int maxId = 0;
+        for (int i = 0; i < incidencias.getLength(); i++) {
+            Element el = (Element) incidencias.item(i);
+            int id = Integer.parseInt(el.getElementsByTagName("id").item(0).getTextContent());
+            if (id > maxId) {
+                maxId = id;
+            }
+        }
+        int nextId = maxId + 1; // Siguiente ID disponible
+
+        // Crear un nuevo elemento de incidencia y agregarlo al documento
+        Element incidenciaElement = doc.createElement("incidencia");
+        incidenciaElement.appendChild(createElement(doc, "id", String.valueOf(nextId)));
+        incidenciaElement.appendChild(createElement(doc, "origen", nuevaIncidencia.getOrigen()));
+        incidenciaElement.appendChild(createElement(doc, "destino", nuevaIncidencia.getDestino()));
+        incidenciaElement.appendChild(createElement(doc, "tipo", nuevaIncidencia.getTipo()));
+        incidenciaElement.appendChild(createElement(doc, "detalle", nuevaIncidencia.getDetalle()));
+        incidenciaElement.appendChild(createElement(doc, "fechahora", nuevaIncidencia.getFechahoraAsString()));
+        root.appendChild(incidenciaElement);
+
+        // Guardar el documento actualizado de nuevo en el recurso
+        xmlResource.setContentAsDOM(doc);
+        storeResource(col, xmlResource);
+
+        logger.info("Nueva incidencia insertada con éxito: ID " + nextId);
+    }
+
+
+
 
 
 

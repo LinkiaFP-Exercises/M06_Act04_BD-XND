@@ -3,6 +3,7 @@ package newApp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Scanner;
 
@@ -28,8 +29,9 @@ public class NewAppMain {
                     case 6: getIncidenciaById(scanner, BD); break;
                     case 7: listAllIncidencias(BD); break;
                     case 8:
-                        // Llamada al método para insertar una incidencia
+                        insertIncidencia(scanner, BD);
                         break;
+
                     case 9:
                         // Llamada al método para obtener incidencias creadas por un empleado
                         break;
@@ -46,6 +48,36 @@ public class NewAppMain {
 
         } catch (Exception e) {
             logger.error("Error durante la ejecución: ", e);
+        }
+    }
+
+    private static void insertIncidencia(Scanner scanner, GestorBD BD) {
+        scanner.nextLine(); // Esto consume el '\n' que queda pendiente en el buffer
+        System.out.println("Insertar una nueva incidencia:");
+        System.out.print("Origen (Usuario): ");
+        String origen = scanner.nextLine();
+        System.out.print("Destino (Usuario): ");
+        String destino = scanner.nextLine();
+        System.out.print("Tipo (Urgente/Normal): ");
+        String tipo = scanner.nextLine().toUpperCase().substring(0,1);
+        if (!tipo.matches("^[UN]$")) {
+            tipo = "N";  // Asigna 'N' si el tipo no es 'U' o 'N'
+        }
+        System.out.print("Detalle de la incidencia: ");
+        String detalle = scanner.nextLine();
+
+        try {
+            Incidencia nuevaIncidencia = new Incidencia();
+            nuevaIncidencia.setOrigen(origen);
+            nuevaIncidencia.setDestino(destino);
+            nuevaIncidencia.setTipo(tipo);
+            nuevaIncidencia.setDetalle(detalle);
+            nuevaIncidencia.setFechahora(LocalDateTime.now());
+            BD.insertarIncidencia(nuevaIncidencia);
+            System.out.println("Incidencia insertada correctamente.");
+        } catch (Exception e) {
+            logger.error("Error al insertar la incidencia: ", e);
+            System.out.println(e.getMessage());
         }
     }
 
