@@ -28,13 +28,8 @@ public class NewAppMain {
                     case 5: eliminarEmpleado(scanner, BD); break;
                     case 6: getIncidenciaById(scanner, BD); break;
                     case 7: listAllIncidencias(BD); break;
-                    case 8:
-                        insertIncidencia(scanner, BD);
-                        break;
-
-                    case 9:
-                        // Llamada al método para obtener incidencias creadas por un empleado
-                        break;
+                    case 8: insertIncidencia(scanner, BD); break;
+                    case 9: listIncideciaByOrgin(scanner, BD); break;
                     case 10:
                         // Llamada al método para obtener incidencias destinadas a un empleado
                         break;
@@ -48,6 +43,32 @@ public class NewAppMain {
 
         } catch (Exception e) {
             logger.error("Error durante la ejecución: ", e);
+        }
+    }
+
+    private static void listIncideciaByOrgin(Scanner scanner, GestorBD BD) {
+        scanner.nextLine();
+        System.out.println("Obtener las incidencias creadas por un empleado:");
+        System.out.print("Ingrese el nombre de usuario del empleado: ");
+        String usuarioOrigen = scanner.nextLine();
+
+        try {
+            List<Incidencia> incidencias = BD.obtenerIncidenciasPorOrigen(usuarioOrigen);
+            if (incidencias.isEmpty()) {
+                System.out.println("No hay incidencias registradas por el usuario: " + usuarioOrigen);
+            } else {
+                for (Incidencia incidencia : incidencias) {
+                    System.out.println("ID: " + incidencia.getId() +
+                            ", Origen: " + incidencia.getOrigen() +
+                            ", Destino: " + incidencia.getDestino() +
+                            ", Tipo: " + incidencia.getTipo() +
+                            ", Detalle: " + incidencia.getDetalle() +
+                            ", Fecha y Hora: " + incidencia.getFechahoraAsString());
+                }
+            }
+        } catch (Exception e) {
+            logger.error("Error al obtener las incidencias por origen: ", e);
+            System.out.println(e.getMessage());
         }
     }
 
@@ -116,7 +137,7 @@ public class NewAppMain {
             System.out.println("Destino: " + incidencia.getDestino());
             System.out.println("Tipo: " + incidencia.getTipo());
             System.out.println("Detalle: " + incidencia.getDetalle());
-            System.out.println("Fecha y Hora: " + incidencia.getFechahora());
+            System.out.println("Fecha y Hora: " + incidencia.getFechahoraAsString());
         } catch (Exception e) {
             logger.error("Error al obtener la incidencia: ", e);
             System.out.println(e.getMessage());
