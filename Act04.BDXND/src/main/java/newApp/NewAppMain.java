@@ -41,6 +41,22 @@ public class NewAppMain {
         }
     }
 
+    private static void printMenu() {
+        System.out.println("\n*** Gestión de Empleados e Incidencias ***");
+        System.out.println("1. Insertar un empleado nuevo");
+        System.out.println("2. Validar la entrada de un empleado");
+        System.out.println("3. Modificar el perfil de un empleado");
+        System.out.println("4. Cambiar la contraseña de un empleado");
+        System.out.println("5. Eliminar un empleado");
+        System.out.println("6. Obtener una incidencia por ID");
+        System.out.println("7. Listar todas las incidencias");
+        System.out.println("8. Insertar una incidencia");
+        System.out.println("9. Obtener las incidencias creadas por un empleado");
+        System.out.println("10. Obtener las incidencias destinadas a un empleado");
+        System.out.println("0. Salir");
+        System.out.print("Elige una opción: ");
+    }
+
     private static void listIncidenciasByDestiny(Scanner scanner, GestorBD BD) {
         scanner.nextLine();
         System.out.println("Obtener las incidencias destinadas a un empleado:");
@@ -221,22 +237,6 @@ public class NewAppMain {
         }
     }
 
-    private static void printMenu() {
-        System.out.println("\n*** Gestión de Empleados e Incidencias ***");
-        System.out.println("1. Insertar un empleado nuevo");
-        System.out.println("2. Validar la entrada de un empleado");
-        System.out.println("3. Modificar el perfil de un empleado");
-        System.out.println("4. Cambiar la contraseña de un empleado");
-        System.out.println("5. Eliminar un empleado");
-        System.out.println("6. Obtener una incidencia por ID");
-        System.out.println("7. Listar todas las incidencias");
-        System.out.println("8. Insertar una incidencia");
-        System.out.println("9. Obtener las incidencias creadas por un empleado");
-        System.out.println("10. Obtener las incidencias destinadas a un empleado");
-        System.out.println("0. Salir");
-        System.out.print("Elige una opción: ");
-    }
-
     private static void insertarEmpleado(Scanner scanner, GestorBD BD) {
         System.out.println("Insertar un nuevo empleado:");
         System.out.print("Usuario: ");
@@ -266,4 +266,5 @@ public class NewAppMain {
             logger.error("Error insertando el empleado: ", e);
         }
     }
+
 }
